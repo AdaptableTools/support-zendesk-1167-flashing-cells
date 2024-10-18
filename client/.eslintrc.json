@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:deprecation/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2023,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react",  "html", "@html-eslint", "react-hooks", "prettier", "deprecation", "@stylistic"],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true, "printWidth": 120 }],
+    "object-shorthand": ["error", "always"],
+    "@stylistic/linebreak-style": ["error", "unix"],
+    "@stylistic/quotes": ["error", "single"],
+    "@stylistic/semi": ["error", "always"],
+    "@stylistic/no-multiple-empty-lines": ["error", { "max": 1 }],
+    "@stylistic/no-trailing-spaces": "error",
+    "no-console": ["warn"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "dot-notation": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all"
+      }
+    ],
+    "@typescript-eslint/no-duplicate-enum-values": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "parser": "@html-eslint/parser",
+      "extends": ["plugin:@html-eslint/recommended"]
+    }
+  ]
+}
