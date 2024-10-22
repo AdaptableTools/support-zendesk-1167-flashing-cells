@@ -1,32 +1,29 @@
 import React from 'react';
-import AdaptableReact, { AdaptableApi, AdaptableReadyInfo } from '@adaptabletools/adaptable-react-aggrid';
-import { AgGridReact } from '@ag-grid-community/react';
+import { Adaptable, AdaptableApi, AdaptableReadyInfo } from '@adaptabletools/adaptable-react-aggrid';
 import { adaptablePositionOptions, gridPositionOptions } from './options';
-import { GridApi } from '@ag-grid-community/core';
 import { GridComponentProps, agGridModules } from './GridModel';
 
 export const PositionGridComponent: React.FC<GridComponentProps> = ({ setGridApis }) => {
   const adaptableApiRef = React.useRef<AdaptableApi>();
 
   const onAdaptableReady = async (adaptableReadyInfo: AdaptableReadyInfo) => {
-    const { adaptableApi, gridOptions: gridOps } = adaptableReadyInfo;
-    const agGridApi = gridOps.api as GridApi;
+    const { adaptableApi, agGridApi } = adaptableReadyInfo;
     // save a reference to adaptable api
     adaptableApiRef.current = adaptableApi;
     setGridApis(adaptableApi, agGridApi);
   };
 
   return (
-    <div style={{ display: 'flex', flexFlow: 'column', height: '100%', width: '100%' }}>
-      <AdaptableReact
-        style={{ flex: 'none', width: '100%' }}
-        gridOptions={gridPositionOptions}
-        adaptableOptions={adaptablePositionOptions}
-        onAdaptableReady={onAdaptableReady}
-      />
-      <div className="ag-theme-alpine" style={{ height: '100%' }} data-testid="blotter-grid">
-        <AgGridReact modules={agGridModules} gridOptions={gridPositionOptions} />
+    <Adaptable.Provider
+      gridOptions={gridPositionOptions}
+      adaptableOptions={adaptablePositionOptions}
+      modules={agGridModules}
+      onAdaptableReady={onAdaptableReady}
+    >
+      <div style={{ display: 'flex', flexFlow: 'column', height: '100vh' }}>
+        <Adaptable.UI style={{ flex: 'none' }} />
+        <Adaptable.AgGridReact className="ag-theme-alpine" />
       </div>
-    </div>
+    </Adaptable.Provider>
   );
 };

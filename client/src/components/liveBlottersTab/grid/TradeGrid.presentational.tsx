@@ -1,18 +1,15 @@
 import React from 'react';
-import AdaptableReact, { AdaptableApi, AdaptableReadyInfo } from '@adaptabletools/adaptable-react-aggrid';
-import { AgGridReact } from '@ag-grid-community/react';
+import { Adaptable, AdaptableApi, AdaptableReadyInfo } from '@adaptabletools/adaptable-react-aggrid';
 import { adaptableTradeOptions, gridTradeOptions } from './options';
-import { GridApi } from '@ag-grid-community/core';
 import { dispatch } from '#/business/configureStore';
 import { thunks } from '#/business/rpsThunks';
-import { GridComponentProps, agGridModules } from './GridModel';
+import { agGridModules, GridComponentProps } from './GridModel';
 
 export const TradeGridComponent: React.FC<GridComponentProps> = ({ setGridApis }) => {
   const adaptableApiRef = React.useRef<AdaptableApi>();
 
   const onAdaptableReady = async (adaptableReadyInfo: AdaptableReadyInfo) => {
-    const { adaptableApi, gridOptions: gridOps } = adaptableReadyInfo;
-    const agGridApi = gridOps.api as GridApi;
+    const { adaptableApi, agGridApi } = adaptableReadyInfo;
     // save a reference to adaptable api
     adaptableApiRef.current = adaptableApi;
     setGridApis(adaptableApi, agGridApi);
@@ -23,16 +20,16 @@ export const TradeGridComponent: React.FC<GridComponentProps> = ({ setGridApis }
   };
 
   return (
-    <div style={{ display: 'flex', flexFlow: 'column', height: '100%', width: '100%' }}>
-      <AdaptableReact
-        style={{ flex: 'none', width: '100%' }}
-        gridOptions={gridTradeOptions}
-        adaptableOptions={adaptableTradeOptions}
-        onAdaptableReady={onAdaptableReady}
-      />
-      <div className="ag-theme-alpine" style={{ height: '1000px' }} data-testid="blotter-grid">
-        <AgGridReact modules={agGridModules} gridOptions={gridTradeOptions} />
+    <Adaptable.Provider
+      gridOptions={gridTradeOptions}
+      adaptableOptions={adaptableTradeOptions}
+      modules={agGridModules}
+      onAdaptableReady={onAdaptableReady}
+    >
+      <div style={{ display: 'flex', flexFlow: 'column', height: '100vh' }}>
+        <Adaptable.UI style={{ flex: 'none' }} />
+        <Adaptable.AgGridReact className="ag-theme-alpine" />
       </div>
-    </div>
+    </Adaptable.Provider>
   );
 };

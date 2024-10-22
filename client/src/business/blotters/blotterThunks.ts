@@ -19,7 +19,7 @@ function onGridReadyThunk(adaptableApi: AdaptableApi, agGridApi: GridApi): AppTh
     const [selectData, removeAllData] =
       kind === 'TRADE' ? [selectTrades, removeAllTrades] : [selectPositions, removeAllPositions];
     const data = selectData(state.blotters.dataSources);
-    adaptableApi.gridApi.resetGridData(data);
+    adaptableApi.gridApi.loadGridData(data);
     gridApiManager.setAdaptableApi(adaptableApi);
     gridApiManager.setAgGridApi(agGridApi);
     dispatch(removeAllData());

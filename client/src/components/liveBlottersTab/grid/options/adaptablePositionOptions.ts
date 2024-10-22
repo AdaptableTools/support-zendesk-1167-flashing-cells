@@ -175,14 +175,12 @@ export const adaptablePositionOptions: AdaptableOptions<Position> = {
             ColumnIds: ['livePosition', 'codPosition', 'sodPosition'],
           },
           DisplayFormat: numberDisplayFormat(0),
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
           Scope: { ColumnIds: ['marketPrice', 'closingPrice', 'priceMove'] },
           Style: {},
           DisplayFormat: numberDisplayFormat(4),
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         // Combine with the FormatColumns from adaptableCommonOptions

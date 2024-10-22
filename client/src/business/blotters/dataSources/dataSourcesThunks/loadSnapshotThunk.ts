@@ -21,7 +21,7 @@ function loadTradeSnapshotThunk(): AppThunk {
       dispatch(setCdrIsLoading(false));
       const adaptableApi = gridApiManager.getAdaptableApi();
       if (adaptableApi) {
-        adaptableApi.gridApi.resetGridData(trades);
+        adaptableApi.gridApi.loadGridData(trades);
       } else {
         dispatch(upsertTrades(trades));
       }
@@ -53,7 +53,7 @@ function loadPositionSnapshotThunk(): AppThunk {
       dispatch(setCdrIsLoading(false));
       const adaptableApi = gridApiManager.getAdaptableApi();
       if (adaptableApi) {
-        adaptableApi.gridApi.resetGridData(positions);
+        adaptableApi.gridApi.loadGridData(positions);
       } else {
         dispatch(upsertPositions(positions));
       }

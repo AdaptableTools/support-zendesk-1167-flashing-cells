@@ -33,7 +33,7 @@ export function clearEventReceivedThunk({
       return;
     }
     const adaptableApi = gridApiManager.getAdaptableApi();
-    adaptableApi?.gridApi.resetGridData([]);
+    adaptableApi?.gridApi.loadGridData([]);
     dispatch(removeAll());
     dispatch(updateLastAppliedEventId({ incrementId }));
     dispatch(updateRestartId({ restartId }));

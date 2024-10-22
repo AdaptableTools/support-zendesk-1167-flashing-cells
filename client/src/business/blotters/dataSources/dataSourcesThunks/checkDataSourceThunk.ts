@@ -11,7 +11,12 @@ export function checkDataSourceThunk(): AppThunk {
 
     agGridApi?.forEachNode((node) => {
       if (!node.group) {
-        if (agGridApi.getValue(sodColId, node) !== 0) {
+        if (
+          agGridApi.getCellValue({
+            colKey: sodColId,
+            rowNode: node,
+          }) !== 0
+        ) {
           sodRecieved = true;
         }
       }

@@ -23,8 +23,16 @@ function updateAggregationsThunk(): AppThunk {
 
     agGridApi?.forEachNodeAfterFilter((node) => {
       if (!node.group) {
-        dv01Sum += agGridApi.getValue(dv01ColId, node) ?? 0;
-        pnlSum += agGridApi.getValue(pnlColId, node) ?? 0;
+        dv01Sum +=
+          agGridApi.getCellValue({
+            colKey: dv01ColId,
+            rowNode: node,
+          }) ?? 0;
+        pnlSum +=
+          agGridApi.getCellValue({
+            colKey: pnlColId,
+            rowNode: node,
+          }) ?? 0;
       }
     });
 

@@ -371,13 +371,11 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
             ColumnIds: ['executionDate_1', 'initialExecutionDate_1', 'inputDate_1', 'modificationDate_1'],
           },
           DisplayFormat: timeDisplayFormat,
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
           Scope: { ColumnIds: ['updatedAt'] },
           DisplayFormat: dateTimeDisplayFormat,
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
@@ -397,7 +395,6 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
               CustomDisplayFormats: ['displayInUTC'],
             },
           },
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
@@ -415,13 +412,11 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
             ],
           },
           DisplayFormat: numberDisplayFormat(0),
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
           Scope: { ColumnIds: ['bpv', 'couponRate', 'pnl'] },
           DisplayFormat: numberDisplayFormat(2),
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
@@ -441,14 +436,12 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
             ],
           },
           DisplayFormat: numberDisplayFormat(4),
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
           Scope: {
             ColumnIds: ['status'],
           },
-          IncludeGroupedRows: true,
           CellAlignment: 'Center',
         },
         // Combine with the FormatColumns from adaptableCommonOptions

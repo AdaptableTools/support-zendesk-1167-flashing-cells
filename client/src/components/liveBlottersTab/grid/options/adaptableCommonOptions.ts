@@ -55,7 +55,6 @@ export const adaptableCommonOptions: AdaptableOptions = {
               },
             ],
           },
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
         {
@@ -66,7 +65,6 @@ export const adaptableCommonOptions: AdaptableOptions = {
             Options: { Pattern: 'dd/MM/yyyy' },
           },
           Rule: { Predicates: [{ PredicateId: 'NonBlanks' }] },
-          IncludeGroupedRows: true,
           CellAlignment: 'Left',
         },
       ],
