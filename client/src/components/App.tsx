@@ -1,5 +1,5 @@
 import React from 'react';
-import '@inside-design/inside-design-core';
+//import '@inside-design/inside-design-core';
 import { Header } from './Header';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { TabContainer } from './shared/TabContainer';

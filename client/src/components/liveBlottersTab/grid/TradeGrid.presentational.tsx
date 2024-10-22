@@ -30,7 +30,7 @@ export const TradeGridComponent: React.FC<GridComponentProps> = ({ setGridApis }
         adaptableOptions={adaptableTradeOptions}
         onAdaptableReady={onAdaptableReady}
       />
-      <div className="ag-theme-alpine" style={{ height: '100%' }} data-testid="blotter-grid">
+      <div className="ag-theme-alpine" style={{ height: '1000px' }} data-testid="blotter-grid">
         <AgGridReact modules={agGridModules} gridOptions={gridTradeOptions} />
       </div>
     </div>

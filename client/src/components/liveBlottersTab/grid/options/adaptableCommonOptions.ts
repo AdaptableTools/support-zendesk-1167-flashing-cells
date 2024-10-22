@@ -1,7 +1,6 @@
 import { parseISO } from 'date-fns';
 import { format, utcToZonedTime } from 'date-fns-tz';
 import { AdaptableOptions, CustomDisplayFormatterContext } from '@adaptabletools/adaptable-react-aggrid';
-import { CibColors } from '#/cibColors';
 
 export const adaptableCommonOptions: AdaptableOptions = {
   licenseKey:
@@ -31,9 +30,9 @@ export const adaptableCommonOptions: AdaptableOptions = {
         {
           Scope: { DataTypes: ['Number'] },
           Rule: { Predicates: [{ PredicateId: 'AnyChange' }] },
-          DownChangeStyle: { BackColor: CibColors.terracotta200 },
-          UpChangeStyle: { BackColor: CibColors.cacib200 },
-          NeutralChangeStyle: { BackColor: CibColors.azure200 },
+          DownChangeStyle: { BackColor: '#bb0d0d' },
+          UpChangeStyle: { BackColor: '#19bb0d' },
+          NeutralChangeStyle: { BackColor: '#0d24bb' },
           FlashDuration: 500,
           FlashTarget: 'cell',
         },

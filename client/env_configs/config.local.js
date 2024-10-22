@@ -1,6 +1,6 @@
 const config = {
-  serverUrl: 'https://fn7qhj-8081.csb.app/',
-  wsServerUrl: 'wss://fn7qhj-8082.csb.app/',
+  serverUrl: 'http://localhost:8081/',
+  wsServerUrl: 'http://localhost:8082/',
   enableReduxDevtools: true,
   checkGridSynchronizedMilliseconds: 10_000,
   signalR: {
