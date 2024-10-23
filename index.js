@@ -10,7 +10,7 @@ const SERVER_PORT = process.env.PORT || 8081;
 const WS_PORT = 8082;
 const FRONTEND_PORT = 8080;
 
-const TRADES_COUNT = 2000;
+const TRADES_COUNT = 20_000;
 const INCREMENT_UPDATE_FREQUENCY = 500; // in ms
 
 const app = express();
