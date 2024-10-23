@@ -51,17 +51,20 @@ function applyAndUpdatePendingEventsThunk(): AppThunk {
           pendingEvent.kind === 'TRADE'
             ? [pendingEvent.createdTrades, pendingEvent.updatedTrades, pendingEvent.deletedTrades, pendingEvent.prices]
             : [pendingEvent.createdPositions, pendingEvent.updatedPositions, pendingEvent.deletedPositions, undefined];
-        adaptableApi.gridApi.addGridData(created);
-        adaptableApi.gridApi.updateGridData(updated);
+        adaptableApi.gridApi.addGridData(created, { runAsync: true });
+        adaptableApi.gridApi.updateGridData(updated, { runAsync: true });
         if (prices?.length) {
           const currentRowData = adaptableApi.gridApi.getGridData() as Trade[];
+          // NOTE: this is a bit of a micro-optimization, but the previous O(n^2) could be a problem with large datasets
+          const currentRowDataMap = new Map(currentRowData.map((rowData) => [rowData.key, rowData]));
+
           const pricesToUpdate = prices.map((partialPrice) => ({
-            ...currentRowData.find((currentRow) => currentRow.key === partialPrice.key),
+            ...currentRowDataMap.get(partialPrice.key),
             ...partialPrice,
           }));
-          adaptableApi.gridApi.updateGridData(pricesToUpdate);
+          adaptableApi.gridApi.updateGridData(pricesToUpdate, { runAsync: true });
         }
-        adaptableApi.gridApi.deleteGridData(deleted);
+        adaptableApi.gridApi.deleteGridData(deleted, { runAsync: true });
         dispatch(removePendingEvents([pendingEvent.incrementId]));
         remainingPendingEventsNumber--;
       }
