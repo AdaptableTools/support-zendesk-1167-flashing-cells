@@ -41,6 +41,7 @@ wsServer.on("connection", (ws) => {
 });
 
 app.get("/api/trades", (req, res) => {
+  generateSnapshot(TRADES_COUNT);
   const tradesJson = fs.readFileSync("./datasource/snapshot.json", "utf8");
   res.status(200).send(tradesJson);
 });
