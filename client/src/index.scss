@@ -353,3 +353,15 @@
   margin-right: 0 !important;
   padding: 5px 0 !important;
 }
+
+cib-header,.cib-flex {
+  display: flex;
+}
+
+.cib-flex {
+  fieldset {
+    margin-left: 10px;
+    padding: 0;
+    border: 0;
+  }
+}

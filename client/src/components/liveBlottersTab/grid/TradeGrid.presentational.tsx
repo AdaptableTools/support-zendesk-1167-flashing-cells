@@ -26,7 +26,7 @@ export const TradeGridComponent: React.FC<GridComponentProps> = ({ setGridApis }
       modules={agGridModules}
       onAdaptableReady={onAdaptableReady}
     >
-      <div style={{ display: 'flex', flexFlow: 'column', height: '100vh' }}>
+      <div style={{ display: 'flex', flexFlow: 'column', height: '95vh' }}>
         <Adaptable.UI style={{ flex: 'none' }} />
         <Adaptable.AgGridReact className="ag-theme-alpine" />
       </div>
