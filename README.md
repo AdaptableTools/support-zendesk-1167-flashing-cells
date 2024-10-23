@@ -21,7 +21,9 @@ Root cause:
  - AG Grid requires A LOT of time to upgrade the data model, more time than the change rate of the data itself
  - because of that, the pending flashing cells are not handled as quickly as they should be, resulting in accumulated flashing cells
  - the main thread is blocked and the UI is unresponsive/laggy
- - the memory usage is high because of the accumulated flashing cells 
+ - the memory usage is high because of the accumulated flashing cells
+
+__All further changes were made in branch [`adaptable_v19`](https://github.com/AdaptableTools/support-zendesk-1167-flashing-cells/tree/adaptable_v19)__
 
 ### Step 1: Update to Adaptable v19.0.x and AG Grid v32.1.x
 
