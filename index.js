@@ -40,18 +40,9 @@ wsServer.on("connection", (ws) => {
   }, INCREMENT_UPDATE_FREQUENCY);
 });
 
-let snaphotOnceGenerated = false;
-
 app.get("/api/trades", (req, res) => {
-  if(snaphotOnceGenerated){
-    console.log("Snapshot already generated, using the same snapshot");
-    const tradesJson = fs.readFileSync("./datasource/snapshot.json", "utf8");
-    res.status(200).send(tradesJson);
-  }
-  generateSnapshot(TRADES_COUNT);
   const tradesJson = fs.readFileSync("./datasource/snapshot.json", "utf8");
   res.status(200).send(tradesJson);
-  snaphotOnceGenerated = true
 });
 
 app.listen(SERVER_PORT, () => {
