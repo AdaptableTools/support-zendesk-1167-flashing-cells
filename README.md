@@ -23,6 +23,8 @@ Root cause:
  - the main thread is blocked and the UI is unresponsive/laggy
  - the memory usage is high because of the accumulated flashing cells 
 
+__All further changes were made in branch [`adaptable_v19`](https://github.com/AdaptableTools/support-zendesk-1167-flashing-cells/tree/adaptable_v19)__
+
 ### Step 1: Update to Adaptable v19.0.x and AG Grid v32.1.x
 
 In AdapTable version 18 we have undertaken a significant refactoring of our internal implementation, especially improving how we integrated and synchronized with AG Grid.   
