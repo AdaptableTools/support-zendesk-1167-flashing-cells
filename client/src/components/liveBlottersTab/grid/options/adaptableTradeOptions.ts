@@ -1,19 +1,12 @@
 import {
   AdaptableOptions,
-  BadgeStyle as TypeofBadgeStyle,
+  FormatColumn,
   FormatColumnState,
   PredefinedConfig,
 } from '@adaptabletools/adaptable-react-aggrid';
 import { Trade } from '#/business/rpsModel';
 import { adaptableCommonOptions } from './adaptableCommonOptions';
-import {
-  timeDisplayFormat,
-  dateTimeDisplayFormat,
-  numberDisplayFormat,
-  numberCalculatedColumnSettings,
-  positiveNegativeBadgeStyle,
-  buySellBadgeStyle,
-} from './utils';
+import { timeDisplayFormat, dateTimeDisplayFormat, numberDisplayFormat, numberCalculatedColumnSettings } from './utils';
 
 const NumberColumnIds = [
   'quantity',
@@ -42,15 +35,44 @@ const NumberColumnIds = [
   'dv01',
 ];
 
-const applyBadgeStyle = (columnIds: string[], BadgeStyle: TypeofBadgeStyle) =>
-  columnIds.map((ColumnId) => ({
-    ColumnId,
-    BadgeStyle,
-    IncludeGroupedRows: false,
-  }));
+// const applyBadgeStyle = (columnIds: string[], BadgeStyle: TypeofBadgeStyle) =>
+//   columnIds.map((ColumnId) => ({
+//     ColumnId,
+//     BadgeStyle,
+//     IncludeGroupedRows: false,
+//   }));
+//
+// const StyledPositiveNegativeColumns = applyBadgeStyle(NumberColumnIds, positiveNegativeBadgeStyle);
+// const StyledBuySellColumns = applyBadgeStyle(['direction'], buySellBadgeStyle);
 
-const StyledPositiveNegativeColumns = applyBadgeStyle(NumberColumnIds, positiveNegativeBadgeStyle);
-const StyledBuySellColumns = applyBadgeStyle(['direction'], buySellBadgeStyle);
+const positiveNegativeFormatColumn: FormatColumn = {
+  Style: {
+    ForeColor: 'red',
+  },
+  Rule: {
+    Predicates: [{ PredicateId: 'Negative' }],
+  },
+  Scope: {
+    ColumnIds: NumberColumnIds,
+  },
+  RowScope: {
+    ExcludeGroupRows: true,
+  },
+};
+const buySellFormatColumn: FormatColumn = {
+  Style: {
+    ForeColor: 'red',
+  },
+  Rule: {
+    Predicates: [{ PredicateId: 'Values', Inputs: ['Sell', 'Rec'] }],
+  },
+  Scope: {
+    ColumnIds: ['direction'],
+  },
+  RowScope: {
+    ExcludeGroupRows: true,
+  },
+};
 
 export const adaptableTradeOptions: AdaptableOptions<Trade> = {
   ...adaptableCommonOptions,
@@ -366,6 +388,8 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
     FormatColumn: {
       Revision: 101,
       FormatColumns: [
+        positiveNegativeFormatColumn,
+        buySellFormatColumn,
         {
           Scope: {
             ColumnIds: ['executionDate_1', 'initialExecutionDate_1', 'inputDate_1', 'modificationDate_1'],
@@ -481,8 +505,8 @@ export const adaptableTradeOptions: AdaptableOptions<Trade> = {
         },
       ],
     },
-    StyledColumn: {
-      StyledColumns: [...StyledPositiveNegativeColumns, ...StyledBuySellColumns],
-    },
+    // StyledColumn: {
+    //   StyledColumns: [...StyledPositiveNegativeColumns, ...StyledBuySellColumns],
+    // },
   },
 };
